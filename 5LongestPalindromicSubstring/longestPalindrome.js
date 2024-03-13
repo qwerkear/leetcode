@@ -19,6 +19,7 @@ var longestPalindrome = function (s) {
     //  start at i and i + 1 in case the provided string has even length
     let result = ""
     for (let i = 0; i < s.length; i++) {
+        //TODO: refactor?
         substring1 = checkPalindrome(i, i)
         if (substring1.length > result.length) {
             result = substring1
