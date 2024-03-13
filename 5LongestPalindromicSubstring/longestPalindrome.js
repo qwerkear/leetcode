@@ -1,3 +1,7 @@
+/**
+ * @param {string} s
+ * @return {string}
+ */
 var longestPalindrome = function (s) {
 
     //TO return a substring palindrome, use two pointers that represent string indexes
