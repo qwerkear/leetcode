@@ -3,12 +3,43 @@
  * @param {number} numRows
  * @return {string}
  */
-var convert = function(s, numRows) {
+var convert = function (s, numRows) {
+    //if the number of rows is greater or equal to the length of the string or there is only one row, the result is just the string
+    if (numRows >= s.length || numRows == 1) {
+        return s
+    }
 
-    
+    //There will always be a character in the same row at index [(numRows - 1) * 2] provided the string is long enough
+    const jump = (numRows - 1) * 2
+    let result = ""
+    let i = 0
+
+    while (i < numRows) {
+        let j = i
+        if (j == 0 || j == numRows - 1) {
+            while (j < s.length) {
+                result = result + s[j]
+                j = j + jump
+            }
+        } else {
+            //As long as we are not in the first or last row, there should be a character at [jump - (2 * i)]
+            while (j < s.length) {
+                let between = j + jump - (2 * i)
+                result = result + s[j]
+                if (between < s.length) {
+                    result = result + s[between]
+                }
+                j = j + jump
+            }
+        }
+        i++
+    }
+
+    return result
+
 };
 
-console.log(convert('PAYPALISHIRING', 3))
+console.log(convert('AB', 1))
 
 //numRows = 3
 //P, skip 4, A, skip 4, H, skip 4, N ...
@@ -58,12 +89,12 @@ console.log(convert('PAYPALISHIRING', 3))
 //A I       !
 //L         !
 
-//Row 1: Skip = (numRows - 1) * 2
-//Row 2: Skip = (numRows - 1) * 2 - 2*1 and (numRows - 1) * 2
-//Row 3: Skip = (numRows - 1) * 2 - 2*2 and (numRows - 1) * 2
+//Row 0: Skip = (numRows - 1) * 2
+//Row 1: Skip = (numRows - 1) * 2 - 2*1 and (numRows - 1) * 2
+//Row 2: Skip = (numRows - 1) * 2 - 2*2 and (numRows - 1) * 2
 
 //EXAMPLE: numRows = 6
-//ROW 1 SKIP: (6 - 1) * 2 = 10 |
-//ROW 2 SKIP: (6 - 1) * 2 - 2*1 = 8 | and | (6 - 1) * 2 = 10
-//ROW 3 SKIP: (6 - 1) * 2 - 2*2 = 6 | and | (6 - 1) * 2 = 10
-//Row 4 SKIP: (6 - 1) * 2 - 2*2 = 4 | and | (6 - 1) * 2 = 10
+//ROW 0 SKIP: (6 - 1) * 2 = 10 |
+//ROW 1 SKIP: (6 - 1) * 2 - 2*1 = 8 | and | (6 - 1) * 2 = 10
+//ROW 2 SKIP: (6 - 1) * 2 - 2*2 = 6 | and | (6 - 1) * 2 = 10
+//Row 3 SKIP: (6 - 1) * 2 - 2*3 = 4 | and | (6 - 1) * 2 = 10
