@@ -36,6 +36,3 @@ var reverse = function (x) {
 };
 
 console.log(reverse(-2147483648))
-
-//I'm sure there's a simpler way to do this with math operators?
-//Try n % 10 maybe?

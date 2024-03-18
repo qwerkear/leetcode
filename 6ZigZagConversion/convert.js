@@ -11,23 +11,23 @@ var convert = function (s, numRows) {
 
     //There will always be a character in the same row at index [(numRows - 1) * 2] provided the string is long enough
     const jump = (numRows - 1) * 2
-    let result = ""
+    let result = []
     let i = 0
 
     while (i < numRows) {
         let j = i
         if (j == 0 || j == numRows - 1) {
             while (j < s.length) {
-                result = result + s[j]
+                result.push(s[j])
                 j = j + jump
             }
         } else {
             //As long as we are not in the first or last row, there should be a character at [jump - (2 * i)]
             while (j < s.length) {
                 let between = j + jump - (2 * i)
-                result = result + s[j]
+                result.push(s[j])
                 if (between < s.length) {
-                    result = result + s[between]
+                    result.push(s[between])
                 }
                 j = j + jump
             }
@@ -35,8 +35,7 @@ var convert = function (s, numRows) {
         i++
     }
 
-    return result
-
+    return result.join('')
 };
 
 console.log(convert('AB', 1))
