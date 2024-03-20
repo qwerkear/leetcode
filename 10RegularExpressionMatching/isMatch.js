@@ -55,4 +55,20 @@ var isMatch = function (s, p) {
 };
 
 console.log(isMatch('aaa', 'a*a'))
-//May need to rethink how this is done considering this test case
+//3/19: May need to rethink how this is done considering this test case
+
+//3/20: So * indicates we may need some sort of logic/decision tree.
+//      We can keep track of where we are in the two strings with pointers
+//
+//                                  s = aab | p = c*a*b
+//                                      i         j
+//                                              ''
+//                                            */ \-       in this case, we would not use 'c*', adding a c creates 0 match in s.
+//                                            c   _       we would not increment i, but j + 2 to get to 'a*'
+//                                              */ \-
+//                                              a   _
+//       now we want to increment i + 1,      */ \-
+//       but leave j. so i points to a        aa   a_
+//       at index i + 1 = 1                  */ \- / \
+//                                         aaa  aa_       since aaa is not in s, stop using a*, proceed through p -> (i, j+2)
+//                                                        j + 2 is 'b' (no *) so add b to the string and look for match
