@@ -13,6 +13,8 @@ var intToRoman = function (num) {
 
     let result = ""
 
+    //can also use `for (const [symbol, value] of Object.entries(romanSymbols))` notation
+    //but this appears to be less memory efficient and slower
     for (const symbol in romanSymbols) {
         let currentSymbolValue = romanSymbols[symbol]
         let currentSymbolCount = Math.floor(num / currentSymbolValue)
