@@ -11,14 +11,13 @@ var intToRoman = function (num) {
         'IX': 9, 'V': 5, 'IV': 4, 'I': 1,
     }
 
-    result = ""
+    let result = ""
 
     for (const symbol in romanSymbols) {
         let currentSymbolValue = romanSymbols[symbol]
-        console.log(currentSymbolValue)
-        if (Math.floor(num / currentSymbolValue)) {
-            let count = Math.floor(num / currentSymbolValue)
-            result += symbol.repeat(count)
+        let currentSymbolCount = Math.floor(num / currentSymbolValue)
+        if (currentSymbolCount) {
+            result += symbol.repeat(currentSymbolCount)
             num = num % currentSymbolValue
         }
     }
