@@ -90,3 +90,7 @@ int main()
 //         }
 //     }
 // }
+
+//The two sum solution actually doesn't help a lot if we just use two pointers
+//after sorting.
+//TODO: that
