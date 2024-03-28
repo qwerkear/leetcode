@@ -9,11 +9,10 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        int remainder = 0;
         map<int, int> result;
         for (int i = 0; i < nums.size(); i++)
         {
-            remainder = target - nums[i];
+            int remainder = target - nums[i];
 
         //if the remainder is not found, find() should return result.end()
             if(result.find(remainder) != result.end()){ 
