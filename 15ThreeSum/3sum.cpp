@@ -15,7 +15,7 @@ class Solution {
 int main(){
         Solution sol;
         vector<string> input = {-1,0,1,2,-1,-4};
-        cout << sol.threeSum(strings) << endl;
+        cout << sol.threeSum(input) << endl;
         return 0;
     };
 
