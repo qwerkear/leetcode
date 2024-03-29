@@ -1,96 +1,53 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <algorithm>
 
 using namespace std;
 
 class Solution
 {
 public:
-vector<vector<int>> twoSum(vector<int> &nums, int target)
-    {
-        map<int, int> visited;
-        vector<vector<int>> results = {};
-        for (int i = 0; i < nums.size(); i++)
-        {
-            int remainder = target - nums[i];
+vector<vector<int>> threeSum(vector<int> &nums)
+{
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> result;
 
-        //if the remainder is not found, find() should return result.end()
-            if(visited.find(remainder) != visited.end()){
-                results.push_back({visited[remainder], i});
-            }
-            visited[nums[i]] = i;
-
+    for(int i = 0; i < nums.size(); i++){
+        if( i > 0 && nums[i] == nums[i - 1]){
+            continue;
         }
-
-        return results;
-    }
-    vector<vector<int>> threeSum(vector<int> &nums)
-    {
-        vector<vector<int>> result = {};
-
-        for(int i = 0; i < nums.size(); i++){
-            int twoSumTarget = 0 - nums[i];
-            vector<int> twoSumArray;
-            vector<vector<int>> twoSumIndexes;
-            for(int j = i; j < nums.size(); j++){
-                //cout << "j + i = " << j + i << "; nums j + i: " << nums[j] + i << endl;
-                twoSumArray.push_back(nums[j]);
-            }
-            //cout << "twoSumArray:" << endl;
-            //for(auto p : twoSumArray){
-            //    cout << p << endl;
-            //}
-            twoSumIndexes = twoSum(twoSumArray, twoSumTarget);
-            cout << i << "twoSumIndexes:" << endl;
-            for(vector<int> pair : twoSumIndexes){
-                for(int p : pair){
-                    p = p + i;
+        int left = i + 1;
+        int right = nums.size() - 1;
+        while(left < right){
+            int threeSum = nums[i] + nums[left] + nums[right];
+            if(threeSum > 0){
+                right -= 1;
+            } else if (threeSum < 0){
+                left += 1;
+            } else {
+                result.push_back({nums[i], nums[left], nums[right]});
+                left += 1;
+                while(nums[left] == nums[left - 1] && left < right){
+                    left +=1;
                 }
-                result.push_back({nums[i], nums[pair[0]], nums[pair[1]]});
-                
             }
-            //for(auto p : result){
-            //    for(auto g : p){
-            //        cout << g << ", ";
-            //    }
-            //}
-
         }
-        //for(auto n : result){
-        //    cout << "new Result: " << endl;
-        //            for(auto m: n){                        
-        //                cout << m << endl;
-        //            }
-        //        }
-        return result;
     }
-
+    return result;
     
+}
 };
 
 int main()
 {
     Solution sol;
     vector<int> input = {-1, 0, 1, 2, -1, -4};
-    sol.threeSum(input);
-    //cout << sol.threeSum(input) << endl;
+    vector<vector<int>> result = sol.threeSum(input);
+    for (auto &triplet : result)
+    {
+        cout << triplet[0] << " " << triplet[1] << " " << triplet[2] << "\n";
+    }
     return 0;
-};
+}
 
-// I believe this is two sum but using one of the parameters as `target`
-
-// Here is the Javascript solution for two sum:
-// var twoSum = function(nums, target) {
-//     for(i = 0 ; i < nums.length; i++){
-//         for(j = i + 1; j < nums.length; j++){
-//             if(nums[i] + nums[j] === target){
-//                 return [i,j]
-//             }
-//         }
-//     }
-// }
-
-//The two sum solution actually doesn't help a lot if we just use two pointers
-//after sorting.
-//TODO: that
+//TODO: explain why the sorting helps
