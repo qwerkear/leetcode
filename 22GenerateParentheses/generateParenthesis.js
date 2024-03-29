@@ -1,30 +1,30 @@
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
 var generateParenthesis = function (n) {
-    let result = new Set()
-    let left = 0
-    let right = 0
+    let result = [];
     const backtrackParentheses = (left, right, current) => {
-        if (left == n && right == n) {
-            result.add(current)
-            return
+        if (current.length == 2 * n) {
+            result.push(current.join(''));
+            return;
         }
 
-        if (left > right) {
-            current = current + ")"
-            backtrackParentheses(left, ++right, current)
+        if (left < n) {
+            current.push('(');
+            backtrackParentheses(left + 1, right, current);
+            current.pop();
         }
 
-        while (left < n) {
-            current = current + "("
-            backtrackParentheses(++left, right, current)
+        if (right < left) {
+            current.push(')');
+            backtrackParentheses(left, right + 1, current);
+            current.pop();
         }
     }
 
-    if (n) {
-        backtrackParentheses(left, right, "")
-    }
-
-    return Array.from(result)
-
+    backtrackParentheses(0, 0, []);
+    return result;
 };
 
 console.log(generateParenthesis(3))
