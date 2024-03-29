@@ -25,6 +25,7 @@ var letterCombinations = function (digits) {
         }
 
     }
+    
     if (digits) {
         recursiveBackTrack(0, "")
     }
