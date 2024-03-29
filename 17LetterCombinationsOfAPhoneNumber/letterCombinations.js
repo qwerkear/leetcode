@@ -15,8 +15,6 @@ var letterCombinations = function (digits) {
     }
     let result = []
 
-    let digitsArray = digits.split('')
-
     let recursiveBackTrack = (i, currentString) => {
         if (currentString.length == digits.length) {
             result.push(currentString)
