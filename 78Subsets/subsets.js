@@ -6,18 +6,12 @@ var subsets = function(nums) {
     let result = []
 
     const backtrack = (currentIndex, currentNums) =>{
-        if(!result.includes(currentNums)){
-            result.push([...currentNums])
-            console.log(result)
-        }
+        result.push(currentNums)
 
         for(let i = currentIndex; i < nums.length; i++){
-            if(currentNums.includes(nums[i])){
-                return
-            }
-            currentNums.push(nums[i])
-            backtrack(currentIndex + 1, currentNums)
-            currentNums.pop()
+            let tempNums = [...currentNums]
+            tempNums.push(nums[i])
+            backtrack(i + 1, tempNums)
         }
 
     }
@@ -26,4 +20,4 @@ var subsets = function(nums) {
     return result
 };
 
-subsets([1,2,3])
+console.log(subsets([1,2,3]))
