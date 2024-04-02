@@ -6,7 +6,6 @@ var permute = function (nums) {
     let result = []
 
     if (nums.length == 1) {
-        console.log('nums is length 1:', nums)
         return [[...nums]]
     }
 
