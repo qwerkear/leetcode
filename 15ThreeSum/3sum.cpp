@@ -7,35 +7,43 @@ using namespace std;
 class Solution
 {
 public:
-vector<vector<int>> threeSum(vector<int> &nums)
-{
-    sort(nums.begin(), nums.end());
-    vector<vector<int>> result;
+    vector<vector<int>> threeSum(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> result;
 
-    for(int i = 0; i < nums.size(); i++){
-        if( i > 0 && nums[i] == nums[i - 1]){
-            continue;
-        }
-        int left = i + 1;
-        int right = nums.size() - 1;
-        while(left < right){
-            int threeSum = nums[i] + nums[left] + nums[right];
-            if(threeSum > 0){
-                right -= 1;
-            } else if (threeSum < 0){
-                left += 1;
-            } else {
-                result.push_back({nums[i], nums[left], nums[right]});
-                left += 1;
-                while(nums[left] == nums[left - 1] && left < right){
-                    left +=1;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (i > 0 && nums[i] == nums[i - 1])
+            {
+                continue;
+            }
+            int left = i + 1;
+            int right = nums.size() - 1;
+            while (left < right)
+            {
+                int threeSum = nums[i] + nums[left] + nums[right];
+                if (threeSum > 0)
+                {
+                    right -= 1;
+                }
+                else if (threeSum < 0)
+                {
+                    left += 1;
+                }
+                else
+                {
+                    result.push_back({nums[i], nums[left], nums[right]});
+                    left += 1;
+                    while (nums[left] == nums[left - 1] && left < right)
+                    {
+                        left += 1;
+                    }
                 }
             }
         }
+        return result;
     }
-    return result;
-    
-}
 };
 
 int main()
@@ -50,4 +58,4 @@ int main()
     return 0;
 }
 
-//TODO: explain why the sorting helps
+// TODO: explain why the sorting helps
