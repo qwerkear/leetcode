@@ -19,21 +19,21 @@ class Solution {
     public ListNode swapPairs(ListNode head) {
         ListNode headNode = new ListNode(0, head);
         ListNode currentNode = head;
-        //Set current to head initially. This is one of the values to modify.
+        // Set current to head initially. This is one of the values to modify.
         ListNode previousNode = headNode;
-        //Keep track of the previous node for the next loop
+        // Keep track of the previous node for the next loop
 
-        while (currentNode != null && currentNode.next != null){
+        while (currentNode != null && currentNode.next != null) {
             ListNode nextPair = currentNode.next.next;
-            //value of the next pair to be swapped
+            // value of the next pair to be swapped
             ListNode secondNode = currentNode.next;
-            //reference to the next node. This is the other value to modify
+            // reference to the next node. This is the other value to modify
 
             secondNode.next = currentNode;
             currentNode.next = nextPair;
             previousNode.next = secondNode;
 
-            //Update pointers from outside
+            // Update pointers from outside
             previousNode = currentNode;
             currentNode = nextPair;
 
@@ -42,11 +42,10 @@ class Solution {
         return headNode.next;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Solution sol = new Solution();
-        ListNode head = sol.new ListNode(1, sol.new ListNode(2,null));
+        ListNode head = sol.new ListNode(1, sol.new ListNode(2, null));
         sol.swapPairs(head);
     }
 
-    
 }
