@@ -26,27 +26,27 @@ class Solution {
         List<Integer> result = new ArrayList<Integer>();
 
         DFS(root, result);
-        
+
         return result;
     }
 
-    public void DFS(TreeNode node, List<Integer> list){
-        if(node == null){
+    public void DFS(TreeNode node, List<Integer> list) {
+        if (node == null) {
             return;
         }
 
-        if(node.left != null){
-            DFS(node.left, list);                        
+        if (node.left != null) {
+            DFS(node.left, list);
         }
 
         list.add(node.val);
 
-        if(node.right != null){
+        if (node.right != null) {
             DFS(node.right, list);
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Solution sol = new Solution();
         TreeNode head = sol.new TreeNode(1, null, sol.new TreeNode(2, sol.new TreeNode(3), null));
         System.out.println(sol.inorderTraversal(head));
