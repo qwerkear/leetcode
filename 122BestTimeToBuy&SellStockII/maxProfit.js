@@ -4,7 +4,6 @@
  */
 var maxProfit = function (prices) {
     let localMin = Infinity
-    //let localMinIndex = 0
     let total = 0
 
     for (let i = 0; i < prices.length; i++) {
