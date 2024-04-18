@@ -17,8 +17,9 @@ var merge = function (nums1, m, nums2, n) {
 
 merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)
 
-//I'm assuming below is how you're supposed to do it without just calling .sort() such as above
-//This seems less readable, but is probably the more correct solution since you can explain everything
+//I'm assuming below is how you're supposed to do it without just calling .sort() such as above.
+
+//This seems less readable, but is probably the more "correct" solution since you can explain everything
 //I couldn't go into too much detail about how exactly .sort() works under the hood in an interview, but below is easy to explain
 
 var mergeBetter = function (nums1, m, nums2, n) {
