@@ -11,12 +11,12 @@ var gcdOfStrings = function (str1, str2) {
     }
     let minLength = Math.min(str1.length, str2.length);
     //start with the longest possible divisor
-    for (let l = minLength; l > 0; l--) {
+    for (let i = minLength; i > 0; i--) {
         //check if str1 and str2 lengths are divisable with length
-        //length l represents length of substring
-        if ((str1.length % l === 0) && (str2.length % l === 0)) {
+        //length i represents length of substring
+        if ((str1.length % i === 0) && (str2.length % i === 0)) {
             //return str1 substring up to that length
-            return str1.substring(0, l);
+            return str1.substring(0, i);
         }
     }
 };
